@@ -2,7 +2,7 @@
     margin: 5vmin 5vw;
     width: 90vw;
     height: 10vmin;
-    border: 2px solid lightblue;
+    border: solid 0.4vmin lightblue;
     border-radius: 2vmin;
     display: flex;
     align-items: center;
@@ -46,4 +46,8 @@ code {
     width: 90vw;
     margin: 0 5vw;
     box-sizing: border-box;
+}
+
+#continue {
+    margin: auto;
 }

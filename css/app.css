@@ -5,7 +5,7 @@ body {
 button {
     position: relative;
     border-radius: 0;
-    border: 2px solid lightblue;
+    border: 0.4vmin solid lightblue;
     padding: 1em;
     background-color: white;
     display: block;
@@ -48,5 +48,42 @@ button:hover::before {
 button:active::before {
     top: 0.3em;
     left: 0.3em;
+    transition: 0.2s;
+}
+
+input {
+    border-radius: 0;
+    border: 0.4vmin solid lightblue;
+    padding: 0.3em;
+    background-color: white;
+    display: block;
+}
+
+input:focus {
+    outline: none;
+}
+
+.input {
+    position: relative;
+    width: min-content;
+    height: min-content;
+}
+
+.input > input + span.indicator {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.2s;
+}
+
+.input > input:focus + span.indicator {
+    top: 0.2em;
+    left: 0.2em;
+    background-color: black;
     transition: 0.2s;
 }

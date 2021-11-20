@@ -1,5 +1,22 @@
+var computeTasks = {};
+
+addEventListener("message", e => {
+    computeTasks[e.data.id](e.data.data);
+});
+
+var currentId = 0;
 function compute() {
-    return new Promise(res => res());
+    return new Promise(res => {
+        postMessage({
+            command: "Compute",
+            id: currentId,
+            data: [...arguments]
+        });
+
+        computeTasks[currentId] = res;
+
+        currentId++;
+    });
 }
 
 var result = main();

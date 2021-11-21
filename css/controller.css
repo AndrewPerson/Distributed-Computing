@@ -6,9 +6,73 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 3vmin;
+}
+
+body > :first-child {
+    margin-top: auto;
+}
+
+body > div:last-of-type {
+    margin-bottom: auto;
 }
 
 p {
     min-height: 1ch;
+}
+
+#result {
+    width: 90%;
+    background-color: rgb(240, 240, 240);
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+#workers {
+    --size: 8ch;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+    width: 90%;
+    column-gap: 3vmin;
+}
+
+#workers > div {
+    --percent: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--size) * 1.5);
+    align-self: start;
+}
+
+#workers > div > div {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+}
+
+#workers > div > div > h1 {
+    line-height: calc(var(--size) / 2);
+    text-align: center;
+    margin: 0;
+    color: lightblue;
+    mix-blend-mode: difference;
+}
+
+#workers > div > div > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    background-color: lightblue;
+    color: white;
+    width: var(--size);
+    height: var(--size);
+    clip-path: polygon(0 100%, 100% 100%, 100% calc(100% - var(--percent)), 0 calc(100% - var(--percent)));
+    z-index: -1;
+}
+
+#workers > div > p.name {
+    text-align: center;
 }

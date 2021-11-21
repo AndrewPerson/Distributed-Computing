@@ -2,6 +2,7 @@ var computeTasks = {};
 
 addEventListener("message", e => {
     computeTasks[e.data.id](e.data.data);
+    delete computeTasks[e.data.id];
 });
 
 var currentId = 0;

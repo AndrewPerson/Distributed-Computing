@@ -11,12 +11,15 @@ var states = [
 var state = document.getElementById("state");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 var queuedMessages = [];
 var totalMaxWorkers = 0;
 var currentWorkers = 0;
 
 =======
 >>>>>>> parent of 6b2479e (Added working distributed computing!)
+=======
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 =======
 >>>>>>> parent of d8f7e0a (Made computing more resilient)
 var peer = new Peer(options = {
@@ -75,10 +78,13 @@ main();
 function startCompute() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (connections.length == 0) return;
 
     computing = true;
 
+=======
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 =======
 >>>>>>> parent of d8f7e0a (Made computing more resilient)
     state.disabled = true;
@@ -97,7 +103,12 @@ function startCompute() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 ResetConnectionDisplay(i);
+=======
+            state.disabled = false;
+            state.textContent = states[1];
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 =======
             state.disabled = false;
             state.textContent = states[1];
@@ -115,6 +126,7 @@ function startCompute() {
     for (var connection of connections) {
         connection.send({command: "Start"});
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     else {
         queuedMessages.push(data);
@@ -170,6 +182,8 @@ function RemoveConnectionDisplay(index) {
         }
     });
 >>>>>>> parent of 6b2479e (Added working distributed computing!)
+=======
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 =======
 >>>>>>> parent of d8f7e0a (Made computing more resilient)
 }

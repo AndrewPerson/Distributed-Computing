@@ -71,6 +71,10 @@ input:focus {
     outline: none;
 }
 
+input::before {
+    content: attr(placeholder);
+}
+
 .input {
     position: relative;
     width: min-content;

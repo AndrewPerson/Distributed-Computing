@@ -3,7 +3,7 @@ html, body, main {
 }
 
 body {
-    padding: 3vmin;
+    padding: 2vmin;
     box-sizing: border-box;
 }
 
@@ -29,9 +29,19 @@ p {
 }
 
 #upload {
-    position: absolute;
+    position: fixed;
     top: 2vmin;
     right: 2vmin;
+}
+
+#state {
+    position: sticky;
+    top: 2vmin;
+}
+
+#upload::before,
+#state::before {
+    mix-blend-mode: difference;
 }
 
 #result {

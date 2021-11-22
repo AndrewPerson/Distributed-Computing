@@ -55,7 +55,8 @@ function connect(e) {
             metadata: {
                 maxWorkers: maxWorkers,
                 password: passwordInput.value
-            }
+            },
+            serialization: "json"
         });
 
         window.addEventListener("unload", () => {
@@ -82,6 +83,11 @@ function connect(e) {
             else if (data.command == "Close") {
                 stateInput.textContent = states[1];
                 setState(false);
+            }
+            else if (data.command == "Incorrect Password") {
+                stateInput.textContent = states[1];
+                setState(false);
+                controllerConnection.close();
             }
             else if (data.command == "Compute") {
                 processingData[data.id] = data.data;

@@ -35,8 +35,7 @@ peer.on("connection", conn => {
     var index;
     conn.on("open", () => {
         if (conn.metadata.password != password) {
-            conn.send({command: "Close"});
-            conn.close();
+            conn.send({command: "Incorrect Password"});
             return;
         }
 

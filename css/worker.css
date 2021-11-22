@@ -17,3 +17,7 @@ input {
 p {
     height: 0ch;
 }
+
+label {
+    margin-bottom: -2vmin;
+}

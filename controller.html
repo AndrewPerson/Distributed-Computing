@@ -11,15 +11,13 @@
     <link href="css/controller.css" rel="stylesheet"/>
 </head>
 <body>
-    <button id="start" onclick="startCompute()">Start Computing</button>
+    <button id="state" onclick="startCompute()" autocomplete="off" disabled>Connecting to Server</button>
 
-    <p id="result"></p>
+    <code id="result"></code>
 
-<<<<<<< HEAD
-    <p id="id"></p>
-=======
     <p id="id">ID:</p>
->>>>>>> parent of d8f7e0a (Made computing more resilient)
+
+    <div id="workers"></div>
 
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script src="js/controller.js"></script>

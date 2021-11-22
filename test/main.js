@@ -5,6 +5,8 @@ async function main() {
         responses.push(compute(i));
     }
 
+    responses = await Promise.all(responses);
+
     await new Promise(res => {
         setTimeout(res, 1000);
     });

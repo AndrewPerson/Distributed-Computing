@@ -2,17 +2,17 @@ body {
     margin: 0;
 }
 
+*:disabled {
+    filter: grayscale(100%) brightness(110%);
+}
+
 button {
     position: relative;
     border-radius: 0;
-    border: 2px solid lightblue;
+    border: 0.4vmin solid lightblue;
     padding: 1em;
     background-color: white;
     display: block;
-}
-
-button:disabled {
-    filter: grayscale(100%) brightness(110%);
 }
 
 button:hover:not(:disabled) {
@@ -49,10 +49,14 @@ button:active::before {
     top: 0.3em;
     left: 0.3em;
     transition: 0.2s;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of d8f7e0a (Made computing more resilient)
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3vmin;
 }
 
 input {
@@ -90,6 +94,4 @@ input:focus {
     left: 0.2em;
     background-color: black;
     transition: 0.2s;
-=======
->>>>>>> parent of 6b2479e (Added working distributed computing!)
 }

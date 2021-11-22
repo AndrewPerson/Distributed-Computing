@@ -9,11 +9,3 @@ body {
     justify-content: center;
     gap: 3vmin;
 }
-
-input {
-    width: 20ch;
-}
-
-p {
-    height: 0ch;
-}

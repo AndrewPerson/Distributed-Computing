@@ -1,15 +1,23 @@
-<<<<<<< HEAD
 var computeTasks = {};
 
 addEventListener("message", e => {
     computeTasks[e.data.id](e.data.data);
+    delete computeTasks[e.data.id];
 });
 
 var currentId = 0;
-=======
->>>>>>> parent of 6b2479e (Added working distributed computing!)
 function compute() {
-    return new Promise(res => res());
+    return new Promise(res => {
+        postMessage({
+            command: "Compute",
+            id: currentId,
+            data: [...arguments]
+        });
+
+        computeTasks[currentId] = res;
+
+        currentId++;
+    });
 }
 
 var result = main();

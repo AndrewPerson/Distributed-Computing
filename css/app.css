@@ -2,10 +2,6 @@ body {
     margin: 0;
 }
 
-*:disabled {
-    filter: grayscale(100%) brightness(110%);
-}
-
 button {
     position: relative;
     border-radius: 0;
@@ -13,6 +9,10 @@ button {
     padding: 1em;
     background-color: white;
     display: block;
+}
+
+button:disabled {
+    filter: grayscale(100%) brightness(110%);
 }
 
 button:hover:not(:disabled) {
@@ -50,14 +50,6 @@ button:active::before {
     left: 0.3em;
     transition: 0.2s;
 <<<<<<< HEAD
-}
-
-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 3vmin;
 }
 
 input {

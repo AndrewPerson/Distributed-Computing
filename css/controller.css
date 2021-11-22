@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
     gap: 3vmin;
 }
 
@@ -16,10 +17,14 @@ body > :first-child {
 
 body > div:last-of-type {
     margin-bottom: auto;
+=======
+    justify-content: center;
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 }
 
 p {
     min-height: 1ch;
+<<<<<<< HEAD
 }
 
 #result {
@@ -79,4 +84,6 @@ p {
 =======
     justify-content: center;
 >>>>>>> parent of 6b2479e (Added working distributed computing!)
+=======
+>>>>>>> parent of d8f7e0a (Made computing more resilient)
 }

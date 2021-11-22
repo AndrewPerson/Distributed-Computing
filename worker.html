@@ -11,19 +11,22 @@
     <link href="css/worker.css" rel="stylesheet"/>
 </head>
 <body>
-    <form action="#" onsubmit="connect(event)">
-        <div class="input">
-            <input id="controller" placeholder="Controller ID" required/>
-            <span class="indicator"></span>
-        </div>
-        
-        <div class="input">
-            <input id="maxWorkers" type="number" placeholder="Maximum Worker Scripts" value="4" required/>
-            <span class="indicator"></span>
-        </div>
+    <div class="input">
+        <input id="controller" placeholder="Controller ID" required disabled autocomplete="off"/>
+        <span class="indicator"></span>
+    </div>
 
-        <button id="state" type="submit" onclick="connect(event)" autocomplete="off" disabled>Connecting to Server</button>
-    </form>
+    <div class="input">
+        <input id="password" placeholder="Password" type="password" required disabled autocomplete="off">
+        <span class="indicator"></span>
+    </div>
+    
+    <div class="input">
+        <input id="maxWorkers" type="number" inputmode="numeric" placeholder="Maximum Worker Scripts" value="4" required disabled autocomplete="off">
+        <span class="indicator"></span>
+    </div>
+
+    <button id="state" onclick="connect(event)" autocomplete="off" disabled>Connecting to Server</button>
 
     <p id="id">ID:</p>
 

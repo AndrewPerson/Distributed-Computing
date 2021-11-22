@@ -3,13 +3,12 @@ async function main() {
 
     for (var i = 0; i < 100; i++) {
         responses.push(compute(i));
+        await new Promise(res => {
+            setTimeout(res, 50);
+        });
     }
 
     responses = await Promise.all(responses);
-
-    await new Promise(res => {
-        setTimeout(res, 1000);
-    });
 
     return responses;
 }

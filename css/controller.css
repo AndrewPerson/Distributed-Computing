@@ -1,24 +1,37 @@
-html, body {
+html, body, main {
     height: 100%;
 }
 
 body {
+    padding: 3vmin;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3vmin;
 }
 
-body > :first-child {
+main > :first-child {
     margin-top: auto;
 }
 
-body > div:last-of-type {
+main > :last-child {
     margin-bottom: auto;
 }
 
 p {
     min-height: 1ch;
+}
+
+#upload {
+    position: absolute;
+    top: 2vmin;
+    right: 2vmin;
 }
 
 #result {
@@ -30,8 +43,9 @@ p {
 
 #workers {
     --size: 8ch;
+    --margin: 3ch;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--size) + var(--margin) * 2), 1fr));
     width: 90%;
     column-gap: 3vmin;
 }
@@ -42,8 +56,8 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: calc(var(--size) * 1.5);
     align-self: start;
+    width: calc(var(--size) + var(--margin) * 2);
 }
 
 #workers > div > div {
@@ -71,6 +85,7 @@ p {
     height: var(--size);
     clip-path: polygon(0 100%, 100% 100%, 100% calc(100% - var(--percent)), 0 calc(100% - var(--percent)));
     z-index: -1;
+    transition: 0.2s;
 }
 
 #workers > div > p.name {

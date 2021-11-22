@@ -6,7 +6,17 @@ var states = [
     "Computing"
 ];
 
-var state = document.getElementById("state");
+var stateInput = document.getElementById("state");
+var controllerInput = document.getElementById("controller");
+var passwordInput = document.getElementById("password");
+var maxWorkersInput = document.getElementById("maxWorkers");
+
+function setState(disabled) {
+    stateInput.disabled = disabled;
+    controllerInput.disabled = disabled;
+    passwordInput.disabled = disabled;
+    maxWorkersInput.disabled = disabled;
+}
 
 var maxWorkers = 1;
 
@@ -18,17 +28,14 @@ var peer = new Peer(options = {
 
 peer.on("open", id => {
     document.getElementById("id").textContent = "ID: " + id;
-    state.textContent = states[1];
-    state.disabled = false;
+    stateInput.textContent = states[1];
+    setState(false);
 });
 
 peer.on("error", err => {
     if (err.type == "peer-unavailable") {
-        state.textContent = states[1];
-        state.disabled = false;
-
-        document.getElementById("controller").disabled = false;
-        document.getElementById("maxWorkers").disabled = false;
+        stateInput.textContent = states[1];
+        setState(false);
     }
 });
 
@@ -37,21 +44,17 @@ var workerScriptURL;
 function connect(e) {
     e.preventDefault();
 
-    var controllerInput = document.getElementById("controller");
     var controller = controllerInput.value;
-    controllerInput.disabled = true;
-
-    var maxWorkersInput = document.getElementById("maxWorkers");
     maxWorkers = maxWorkersInput.value;
-    maxWorkersInput.disabled = true;
 
     if (controller && maxWorkers > 0) {
-        state.textContent = states[2];
-        state.disabled = true;
+        stateInput.textContent = states[2];
+        setState(true);
         
         var controllerConnection = peer.connect(controller, {
             metadata: {
-                maxWorkers: maxWorkers
+                maxWorkers: maxWorkers,
+                password: passwordInput.value
             }
         });
 
@@ -71,10 +74,14 @@ function connect(e) {
                 workerScriptURL = URL.createObjectURL(new Blob([data.data], {type: "text/javascript"}));
             }
             else if (data.command == "Start") {
-                state.textContent = states[4];
+                stateInput.textContent = states[4];
             }
             else if (data.command == "Stop") {
-                state.textContent = states[3];
+                stateInput.textContent = states[3];
+            }
+            else if (data.command == "Close") {
+                stateInput.textContent = states[1];
+                setState(false);
             }
             else if (data.command == "Compute") {
                 processingData[data.id] = data.data;
@@ -96,7 +103,7 @@ function connect(e) {
         });
         
         controllerConnection.on("open", () => {
-            state.textContent = states[3];
+            stateInput.textContent = states[3];
         });
     }
 }

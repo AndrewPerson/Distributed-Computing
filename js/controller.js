@@ -8,7 +8,7 @@ var states = [
     "Computing"
 ];
 
-var state = document.getElementById("state");
+var stateInput = document.getElementById("state");
 
 var queuedMessages = [];
 var totalMaxWorkers = 0;
@@ -21,15 +21,25 @@ var peer = new Peer(options = {
 
 peer.on("open", id => {
     document.getElementById("id").textContent = "ID: " + id;
-    state.textContent = states[1];
-    state.disabled = false;
+    stateInput.textContent = states[1];
+    stateInput.disabled = false;
 });
+
+var password = GeneratePassword();
+
+document.getElementById("password").innerText = "Password: " + password;
 
 var connections = [];
 var computing = false;
 peer.on("connection", conn => {
     var index;
     conn.on("open", () => {
+        if (conn.metadata.password != password) {
+            conn.send({command: "Close"});
+            conn.close();
+            return;
+        }
+
         totalMaxWorkers += conn.metadata.maxWorkers;
 
         conn.send({command: "Compute Script", data: workerScriptContent});
@@ -59,6 +69,7 @@ peer.on("connection", conn => {
             }
             else {
                 for (var item of data.data) {
+                    item.command = "Compute";
                     AssignTask(totalMaxWorkers, currentWorkers, item);
                 }
             }
@@ -80,6 +91,12 @@ peer.on("connection", conn => {
         }
     });
 });
+
+window.addEventListener("unload", () => {
+    for (var connection of connections) {
+        connection.conn.send({command: "Close"});
+    }
+})
 
 async function main() {
     var fileCache = await caches.open("files");
@@ -108,8 +125,8 @@ function startCompute() {
 
     computing = true;
 
-    state.disabled = true;
-    state.textContent = states[2];
+    stateInput.disabled = true;
+    stateInput.textContent = states[2];
 
     worker = new Worker(mainScriptURL);
 
@@ -140,8 +157,8 @@ function startCompute() {
 function DisplayResults(data) {
     document.getElementById("result").textContent = data == undefined ? "undefined" : JSON.stringify(data);
 
-    state.disabled = false;
-    state.textContent = states[1];
+    stateInput.disabled = false;
+    stateInput.textContent = states[1];
 }
 
 function AssignTask(totalMaxWorkers, workers, data) {
@@ -222,4 +239,14 @@ function ResetConnectionDisplay(index) {
 
 function RemoveConnectionDisplay(index) {
     workers.children[index].style.display = "none";
+}
+
+function GeneratePassword() {
+    var password = "";
+
+    for (var i = 0; i < 8; i++) {
+        password += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+    }
+
+    return password;
 }

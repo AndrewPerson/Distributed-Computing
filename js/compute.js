@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var computeTasks = {};
 
 addEventListener("message", e => {
@@ -6,18 +7,10 @@ addEventListener("message", e => {
 });
 
 var currentId = 0;
+=======
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 function compute() {
-    return new Promise(res => {
-        postMessage({
-            command: "Compute",
-            id: currentId,
-            data: [...arguments]
-        });
-
-        computeTasks[currentId] = res;
-
-        currentId++;
-    });
+    return new Promise(res => res());
 }
 
 var result = main();

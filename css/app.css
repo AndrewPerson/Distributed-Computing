@@ -9,7 +9,7 @@ body {
 button {
     position: relative;
     border-radius: 0;
-    border: 0.4vmin solid lightblue;
+    border: 2px solid lightblue;
     padding: 1em;
     background-color: white;
     display: block;
@@ -49,6 +49,7 @@ button:active::before {
     top: 0.3em;
     left: 0.3em;
     transition: 0.2s;
+<<<<<<< HEAD
 }
 
 form {
@@ -94,4 +95,6 @@ input:focus {
     left: 0.2em;
     background-color: black;
     transition: 0.2s;
+=======
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 }

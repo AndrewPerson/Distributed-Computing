@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var states = [
     "Connecting to Server",
     "Connect to Controller",
@@ -100,3 +101,5 @@ function connect(e) {
         });
     }
 }
+=======
+>>>>>>> parent of 6b2479e (Added working distributed computing!)

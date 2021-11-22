@@ -1,6 +1,6 @@
 var workerScriptContent;
-var worker;
 var mainScriptURL;
+<<<<<<< HEAD
 
 var states = [
     "Connecting to Server",
@@ -14,12 +14,17 @@ var queuedMessages = [];
 var totalMaxWorkers = 0;
 var currentWorkers = 0;
 
+=======
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 var peer = new Peer(options = {
     host: "distributedcompute.profsmart.repl.co",
-    secure: true
+    secure: true,
+    debug: 3,
+    path: "/"
 });
 
 peer.on("open", id => {
+<<<<<<< HEAD
     document.getElementById("id").textContent = "ID: " + id;
     state.textContent = states[1];
     state.disabled = false;
@@ -79,6 +84,9 @@ peer.on("connection", conn => {
             }
         }
     });
+=======
+    document.getElementById("id").textContent = id;
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 });
 
 async function main() {
@@ -94,24 +102,32 @@ async function main() {
 
     var [workerScript, mainScript] = await Promise.all([workerScriptPromise, mainScriptPromise]);
 
-    workerScriptContent = `importScripts("${location.origin}/js/workerCompute.js");\n${await workerScript.text()}`;
+    workerScriptContent = await workerScript.text();
 
     var mainScriptContent = `importScripts("${location.origin}/js/compute.js");\n${await mainScript.text()}`;
 
     mainScriptURL = URL.createObjectURL(new Blob([mainScriptContent], { type: "text/javascript" }));
+
+
 }
 
 main();
 
 function startCompute() {
+<<<<<<< HEAD
     if (connections.length == 0) return;
 
     computing = true;
 
     state.disabled = true;
     state.textContent = states[2];
+=======
+    var start = document.getElementById("start");
+    start.disabled = true;
+    start.textContent = "Computing...";
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 
-    worker = new Worker(mainScriptURL);
+    var worker = new Worker(mainScriptURL);
 
     worker.addEventListener("message", e => {
         if (e.data.command == "Completed") {
@@ -120,6 +136,7 @@ function startCompute() {
             for (var i = 0; i < connections.length; i++) {
                 computing = false;
 
+<<<<<<< HEAD
                 ResetConnectionDisplay(i);
 
                 if (connections[i].active)
@@ -222,4 +239,10 @@ function ResetConnectionDisplay(index) {
 
 function RemoveConnectionDisplay(index) {
     workers.children[index].style.display = "none";
+=======
+            start.disabled = false;
+            start.textContent = "Start Computing";
+        }
+    });
+>>>>>>> parent of 6b2479e (Added working distributed computing!)
 }

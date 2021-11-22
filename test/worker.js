@@ -1,3 +1,3 @@
-function main(i) {
-    return i == 50 ? "I have number 50!" : "Nothing yet.";
+function compute(i) {
+    return i == 50 ? "I have 50!" : "Nothing yet.";
 }

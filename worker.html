@@ -7,11 +7,27 @@
 
     <title>Distributed Computing | Worker</title>
 
-    <link href="app.css" rel="stylesheet"/>
-    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/worker.css" rel="stylesheet"/>
 </head>
 <body>
-    
-    <script src="worker.js"></script>
+    <form action="#" onsubmit="connect(event)">
+        <div class="input">
+            <input id="controller" placeholder="Controller ID" required/>
+            <span class="indicator"></span>
+        </div>
+        
+        <div class="input">
+            <input id="maxWorkers" type="number" placeholder="Maximum Worker Scripts" value="4" required/>
+            <span class="indicator"></span>
+        </div>
+
+        <button id="state" type="submit" onclick="connect(event)" autocomplete="off" disabled>Connecting to Server</button>
+    </form>
+
+    <p id="id">ID:</p>
+
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="js/worker.js"></script>
 </body>
 </html>

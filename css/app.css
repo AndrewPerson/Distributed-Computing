@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+}
+
+*:disabled {
+    filter: grayscale(100%) brightness(110%);
+}
+
+button {
+    position: relative;
+    border-radius: 0;
+    border: 0.4vmin solid lightblue;
+    padding: 1em;
+    background-color: white;
+    display: block;
+}
+
+button:hover:not(:disabled) {
+    background-color: lightblue;
+    color: white;
+    transition: 0.3s;
+}
+
+button:disabled::before {
+    display: none;
+    z-index: -1;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.2s;
+}
+
+button:hover::before {
+    top: 0.5em;
+    left: 0.5em;
+    background-color: black;
+    transition: 0.2s;
+}
+
+button:active::before {
+    top: 0.3em;
+    left: 0.3em;
+    transition: 0.2s;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3vmin;
+}
+
+input {
+    border-radius: 0;
+    border: 0.4vmin solid lightblue;
+    padding: 0.3em;
+    background-color: white;
+    display: block;
+}
+
+input:focus {
+    outline: none;
+}
+
+.input {
+    position: relative;
+    width: min-content;
+    height: min-content;
+}
+
+.input > input + span.indicator {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.2s;
+}
+
+.input > input:focus + span.indicator {
+    top: 0.2em;
+    left: 0.2em;
+    background-color: black;
+    transition: 0.2s;
+}

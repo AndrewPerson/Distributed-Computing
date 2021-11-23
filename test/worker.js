@@ -1,7 +1,8 @@
-async function compute(i) {
-    await new Promise(res => {
-        setTimeout(res, 100);
-    });
+async function compute(i, primes) {
+    for (var prime of primes) {
+        if (i % prime == 0)
+            return false;
+    }
 
-    return i == 50 ? "I have 50!" : "Nothing yet.";
+    return true;
 }

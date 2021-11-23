@@ -1,14 +1,20 @@
 async function main() {
-    var responses = [];
+    var max = 100000;
 
-    for (var i = 0; i < 100; i++) {
-        responses.push(compute(i));
-        await new Promise(res => {
-            setTimeout(res, 50);
-        });
+    var primes = [2];
+
+    for (var n = 0; n < Math.sqrt(max); n++)
+    {
+        var responses = [];
+
+        for (var i = 0; i < max; i++) {
+            responses.push(compute(i, primes).then(prime => {
+                if (prime) primes.push(i);
+            }));
+        }
+
+        await Promise.all(responses);
     }
 
-    responses = await Promise.all(responses);
-
-    return responses;
+    return primes;
 }

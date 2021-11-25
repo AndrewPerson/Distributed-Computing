@@ -1,3 +1,28 @@
+var search = new URLSearchParams(window.location.search);
+
+if (search.get("file") == "worker") {
+    document.getElementById("fileName").innerText = "Upload worker javascript file";
+}
+
+caches.open("files").then(async cache => {
+    if (search.get("file") == "worker") {
+        var file = await cache.match("worker");
+
+        if (file) {
+            await saveFile(file);
+            showContinueButton();
+        }
+    }
+    else {
+        var file = await cache.match("main");
+
+        if (file) {
+            await saveFile(file);
+            showContinueButton();
+        }
+    }
+});
+
 const allowedFiles = [".js"];
 
 function nextPage() {

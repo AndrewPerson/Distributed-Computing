@@ -22,11 +22,7 @@
     <button id="continue" style="display: none;" onclick="nextPage()">Continue</button>
 
     <script>
-        var search = new URLSearchParams(window.location.search);
-
-        if (search.get("file") == "worker") {
-            document.getElementById("fileName").innerText = "Upload worker javascript file";
-        }
+        
     </script>
 
     <pre><code id="code" class="language-javascript"></code></pre>

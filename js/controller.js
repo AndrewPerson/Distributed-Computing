@@ -122,6 +122,8 @@ main();
 function startCompute() {
     if (connections.length == 0) return;
 
+    document.getElementById("result").innerText = "";
+
     computing = true;
 
     stateInput.disabled = true;
@@ -144,6 +146,11 @@ function startCompute() {
         }
         else if (e.data.command == "Compute") {
             AssignTask(totalMaxWorkers, currentWorkers, e.data);
+        }
+        else if (e.data.command == "Set Percent") {
+            var percent = document.getElementById("percent");
+            percent.textContent = `${e.data.percent}%`;
+            percent.style.setProperty("--percent", `${e.data.percent}%`);
         }
     });
 
